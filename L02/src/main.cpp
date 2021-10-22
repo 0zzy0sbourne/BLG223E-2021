@@ -15,8 +15,8 @@ T max_num(T first, T second){
 int main(){
 
     Student* astudent = new Student("Tolga");
-
-    astudent->set_grade(-90);
+ 
+    astudent->set_grade(10);
 
     cout<< astudent->get_name()<< " "<<astudent->get_grade()<<endl;
 

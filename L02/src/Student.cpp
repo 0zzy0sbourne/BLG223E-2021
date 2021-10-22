@@ -1,6 +1,7 @@
 #include "Student.h"
 
 Student::Student(string name){
+    cout << "Hello from the constructor" << endl ; 
     this->name = name;
     this->grade = 10;
 }
