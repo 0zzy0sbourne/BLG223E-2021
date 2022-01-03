@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> // atof
 #include <string>
 #include <map>
 #include <unordered_map>
@@ -83,13 +83,38 @@ bool perform_operation(char choice, ifstream& inFile)
 void listProducts(ifstream& inFile)
 {
 // *********************Fill this method
-    while(!inFile.fail())
+    int counter = 0;
+    string product, day, price , quantity;
+    while(counter < 5)
+    {
+        // read the elements in the line as a string
+        inFile>> product >> price >> quantity >> day ;
+        
+        //convert string to const char* 
+        const char* newprice = price.c_str(); 
+        const char* newquantity = quantity.c_str(); 
+
+        //convert const char* to double
+        double productPrice = atof(newprice); 
+        double productQuantity = atof(newquantity);
+
+        //print the line
+        cout << product  <<  " " << productPrice << " " << productQuantity<< " " << day << "\n"; 
+        counter++; 
+    }
+  
+
+    /* 
+    while(counter < 5)
     {
         string productName, orderDay; 
         double productPrice, productQuantity; 
-        inFile>> productName >> productPrice >> productQuantity >> orderDay;
-        cout << productName << " " << productPrice <<  " " << productQuantity << " " << orderDay << "\n"; 
+        inFile>>productName>>productPrice>>productQuantity>>orderDay;
+        if(counter != 0)
+            cout << productName << " " << productPrice <<  " " << productQuantity << " " << orderDay << "\n"; 
+        counter++; 
     }
+    */
 
 }
 
