@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h> // atof
-#include <string>
+#include <string> // std::string::c_str
 #include <map>
 #include <unordered_map>
 #include <fstream>
