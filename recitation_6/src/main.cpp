@@ -1,3 +1,7 @@
+/* @Author
+Student Name: Ozan ÇETİN
+Student ID : 150190021
+Date: 04.01.2022*/
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h> // atof
@@ -165,8 +169,9 @@ void listProducts(ifstream& inFile)
     counter = 0; 
     for (itr = mymultimap.rbegin(); itr != mymultimap.rend(); ++itr)
     {
+    
         if(counter == 5) break ; 
-        cout << itr->second << " " << itr->first << '\n';
+        cout << itr->second <<setprecision(2) << fixed << " "  << itr->first << '\n';
         counter++; 
     }
 
