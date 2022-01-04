@@ -83,10 +83,12 @@ bool perform_operation(char choice, ifstream& inFile)
 void listProducts(ifstream& inFile)
 {
 // *********************Fill this method
-    int counter = 0;
+    map <string, double> mymap; // empty multimap container
     string product, day, price , quantity;
-    while(counter < 5)
+    double revenue; 
+    while(!inFile.fail())
     {
+        
         // read the elements in the line as a string
         inFile>> product >> price >> quantity >> day ;
         
@@ -98,12 +100,75 @@ void listProducts(ifstream& inFile)
         double productPrice = atof(newprice); 
         double productQuantity = atof(newquantity);
 
+
+        //calculate the revenue in each loop 
+        revenue = productPrice * productQuantity; 
+
+        // check if the productName is already in the multimap
+        int count = 0;
+        for (const auto& entry : mymap)
+        if (entry.first == product)
+            count++;
+
+        // product already in map, update the revenue of it  
+        if(count != 0){
+            mymap[product] += revenue; 
+        }
+        else { // otherwise map the product name and revenue, add it to the map
+            mymap.insert(pair<string, double> (product, revenue)); 
+        }
+
+
+        /* 
         //print the line
-        cout << product  <<  " " << productPrice << " " << productQuantity<< " " << day << "\n"; 
+        cout << product  <<  "" << productPrice << " " << productQuantity<< " " << day << "\n"; 
         counter++; 
+        if(counter == 5) break ;
+        */ 
+
     }
   
+    // create a reverse iterator
+    map <string, double> :: iterator iter;
+    
+    // set a counter to count for the top 5 product
+    int counter = 0; 
+    for (iter = mymap.begin(); iter != mymap.end(); ++iter)
+    {
+        if(counter == 6) break ; 
+        cout << '\t' << iter->first
+            << '\t' << iter->second << '\n';
+        counter++; 
+    }
+    cout << endl;
 
+    // create an empty multimap
+    multimap <double, string> mymultimap; 
+    for (auto const &pair: mymap) {
+        mymultimap.insert(make_pair(pair.second, pair.first));
+    }
+    
+
+     // print the multimap
+     /*
+     for (auto const &pair: mymultimap) {
+         cout << '{' << pair.second << "," << pair.first << '}' << endl;
+     }
+     */
+
+    multimap <double, string> :: reverse_iterator itr ;
+    
+    // set a counter to count for the top 5 product
+    counter = 0; 
+    for (itr = mymultimap.rbegin(); itr != mymultimap.rend(); ++itr)
+    {
+        if(counter == 5) break ; 
+        cout << '\t' << itr->first
+            << '\t' << itr->second << '\n';
+        counter++; 
+    }
+    cout << endl;
+   
     /* 
     while(counter < 5)
     {
