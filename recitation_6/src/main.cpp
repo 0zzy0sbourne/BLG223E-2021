@@ -131,8 +131,9 @@ void listProducts(ifstream& inFile)
     // create a reverse iterator
     map <string, double> :: iterator iter;
     
+    int counter = 0;
+    /* 
     // set a counter to count for the top 5 product
-    int counter = 0; 
     for (iter = mymap.begin(); iter != mymap.end(); ++iter)
     {
         if(counter == 6) break ; 
@@ -141,6 +142,7 @@ void listProducts(ifstream& inFile)
         counter++; 
     }
     cout << endl;
+    */ 
 
     // create an empty multimap
     multimap <double, string> mymultimap; 
@@ -159,15 +161,15 @@ void listProducts(ifstream& inFile)
     multimap <double, string> :: reverse_iterator itr ;
     
     // set a counter to count for the top 5 product
+    cout << "5 products with the highest revenue for total are:" << "\n" ; 
     counter = 0; 
     for (itr = mymultimap.rbegin(); itr != mymultimap.rend(); ++itr)
     {
         if(counter == 5) break ; 
-        cout << '\t' << itr->first
-            << '\t' << itr->second << '\n';
+        cout << itr->second << " " << itr->first << '\n';
         counter++; 
     }
-    cout << endl;
+
    
     /* 
     while(counter < 5)
