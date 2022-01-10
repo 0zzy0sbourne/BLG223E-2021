@@ -29,22 +29,28 @@ void comparator_examples(){
     v.push_back(Coordinate(5,8));
     v.push_back(Coordinate(1,1));
     v.push_back(Coordinate(7,0));
-
+ 
     CoordinateComparator cc;
 
-    //sort(v.begin(),v.end(),cc);
-    //make_heap(v.begin(), v.end(),cc);
 
+    sort(v.begin(),v.end(), [](Coordinate& c1, Coordinate& c2)->bool{
+        return (c1.get_ycor()<c2.get_ycor()); 
+    }
+    );
+    //make_heap(v.begin(), v.end(),cc); 
+
+    /* 
     sort(v.begin(),v.end(), [](Coordinate& c1, Coordinate& c2)->bool{
         return (c1.get_ycor()<c2.get_ycor());
     } 
     );
-
+    */
     make_heap(v.begin(), v.end(),[](Coordinate& c1, Coordinate& c2)->bool{
         return (c1.length()<c2.length());
     } 
     );
-  
+    
+
     for(auto c:v)
         c.print();
 }
@@ -67,6 +73,7 @@ void priority_queues(){
 void heap_stl(){
     vector<int> v1 = {12, 35, 21, 10, 11, 8, 22, 23, 30};
 
+    // min heap
     make_heap(v1.begin(), v1.end(), std::greater<>{});
 
     for(int i:v1)
